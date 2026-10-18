@@ -3,6 +3,8 @@
 A local-first receipt and invoice sorter for people who bill by the hour and
 would rather not hand their client data to another SaaS.
 
+![Quiet Ledger's ledger view](docs/quiet-ledger.png)
+
 Drop a PDF, a photo, or paste the receipt text. Gemma 3 1B reads it on your own
 machine, drafts the bookkeeping entry, and you confirm it before it lands in the
 CSV you send your accountant.
