@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiet Ledger — receipts sorted on your machine</title>
+    <meta
+      name="description"
+      content="A local-first receipt and invoice sorter for freelancers. Gemma reads the receipt, you approve the entry, and the CSV never leaves your laptop."
+    />
+    <meta name="theme-color" content="#12352b" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <img src="/static/icon.svg" alt="" width="44" height="44" />
+        <div>
+          <h1>Quiet Ledger</h1>
+          <p>Receipts sorted on your machine. Nothing uploaded.</p>
+        </div>
+      </div>
+      <div class="status" id="status" aria-live="polite">checking model…</div>
+    </header>
+
+    <main>
+      <section class="drop" id="drop" aria-label="Upload receipts">
+        <input
+          type="file"
+          id="file"
+          multiple
+          accept=".pdf,.png,.jpg,.jpeg,.webp,.tif,.tiff,.txt,.csv,.md"
+        />
+        <p class="drop-title">Drop receipts or invoices here</p>
+        <p class="drop-sub">
+          PDFs, photos, or pasted text. Gemma reads them locally, you correct the
+          entry, then export a clean CSV for your accountant.
+        </p>
+        <button type="button" id="browse" class="primary">Choose files</button>
+      </section>
+
+      <details class="paste">
+        <summary>No file handy? Paste the receipt text</summary>
+        <label for="paste">Receipt text</label>
+        <textarea
+          id="paste"
+          rows="5"
+          placeholder="Kasha Hardware Ltd&#10;Date: 12/10/2026&#10;Total: KES 4,850.00&#10;VAT: KES 621.00"
+        ></textarea>
+        <button type="button" id="paste-send" class="primary">Sort this receipt</button>
+      </details>
+
+      <section class="toolbar" aria-label="Filters">
+        <label class="field">
+          <span>Search</span>
+          <input id="q" type="search" placeholder="Vendor or note" />
+        </label>
+        <label class="field">
+          <span>Month</span>
+          <input id="month" type="month" />
+        </label>
+        <label class="field">
+          <span>Category</span>
+          <select id="category">
+            <option value="">All</option>
+          </select>
+        </label>
+        <a id="export" class="ghost" href="/api/export.csv">Download CSV</a>
+      </section>
+
+      <section class="summary" id="summary" aria-live="polite"></section>
+
+      <section class="ledger">
+        <div class="ledger-head">
+          <h2>Sorted receipts</h2>
+          <p id="count-note"></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Vendor</th>
+                <th>Category</th>
+                <th class="num">Total</th>
+                <th>Read by</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <p class="empty" id="empty">
+            Nothing yet. Drop a receipt above and it will appear here in a second.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="editor">
+      <form method="dialog" id="editor-form">
+        <h2>Correct the entry</h2>
+        <p class="hint">
+          The model drafts, you approve. Every field here is what lands in the CSV.
+        </p>
+        <div class="grid">
+          <label>Vendor <input name="vendor" required /></label>
+          <label>Date <input name="date" type="date" /></label>
+          <label>Total <input name="total" type="number" step="0.01" /></label>
+          <label>Tax <input name="tax" type="number" step="0.01" /></label>
+          <label>Currency <input name="currency" maxlength="3" /></label>
+          <label>
+            Category
+            <select name="category"></select>
+          </label>
+          <label>
+            Payment
+            <select name="payment_method">
+              <option value="">Unknown</option>
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+              <option value="mpesa">M-Pesa</option>
+              <option value="bank transfer">Bank transfer</option>
+              <option value="cheque">Cheque</option>
+            </select>
+          </label>
+          <label>Invoice no. <input name="invoice_number" /></label>
+        </div>
+        <label>Notes <input name="notes" /></label>
+        <menu>
+          <button type="button" class="ghost" id="editor-cancel">Cancel</button>
+          <button type="submit" class="primary">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <ul class="queue" id="queue" aria-live="polite"></ul>
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>

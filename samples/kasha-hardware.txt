@@ -1,0 +1,18 @@
+KASHA HARDWARE LTD
+Ngong Road, Nairobi
+PIN: P051234567X
+
+TAX INVOICE
+Invoice No: INV-2026-1044
+Date: 12/10/2026
+
+Cordless drill 18V          3,200.00
+Wood screws 4x40 (box)        450.00
+Work gloves                   580.00
+
+Subtotal                    4,230.00
+VAT 16%                       620.00
+TOTAL                       KES 4,850.00
+
+Paid by: M-PESA
+Thank you for your business.

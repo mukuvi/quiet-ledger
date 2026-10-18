@@ -1,0 +1,16 @@
+Northwind Studio LLC
+14 Foundry Street, Portland, OR
+
+INVOICE
+Invoice #: NW-8841
+Issued: October 9, 2026
+
+Design retainer, October        $1,800.00
+Stock photography license          $120.00
+
+Subtotal                        $1,920.00
+Sales tax (8.5%)                  $163.20
+Amount due                      $2,083.20
+
+Payment: bank transfer
+Due on receipt.

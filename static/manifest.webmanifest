@@ -1,0 +1,17 @@
+{
+  "name": "Quiet Ledger",
+  "short_name": "Quiet Ledger",
+  "description": "Local-first receipt and invoice sorter for freelancers. Gemma reads, you approve, CSV is yours.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f2e9",
+  "theme_color": "#12352b",
+  "icons": [
+    {
+      "src": "/static/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
