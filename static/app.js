@@ -29,7 +29,7 @@ const els = {
 };
 
 const money = (amount, code) => {
-  if (amount === null || amount === undefined) return "—";
+  if (amount === null || amount === undefined) return "n/a";
   const currency = code || "USD";
   try {
     return new Intl.NumberFormat(undefined, {
